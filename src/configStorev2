@@ -1,0 +1,40 @@
+import { Platform } from 'react-native';
+import {
+	createStore,
+	applyMiddleware,
+	compose
+} from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import promise from 'redux-promise';
+import thunk from 'redux-thunk';
+import logger from 'redux-logger';
+
+import RootReducer from './Reducers/index.js'
+
+const middleware = applyMiddleware(thunk, promise, logger);
+
+const enhancer = composeWithDevTools({
+	name: Platform.OS,
+	hostname: 'localhost',
+	port: 5678
+})
+
+export default function configureStore(initialState) {
+	
+	const Store = createStore(
+	RootReducer,
+	initialState,
+	enhancer
+	);
+	if (module.hot) {
+
+    module.hot.accept(() => {
+
+      Store.replaceReducer(require('./Reducers/index.js').default);
+
+    });
+
+  }
+  
+  return Store
+}

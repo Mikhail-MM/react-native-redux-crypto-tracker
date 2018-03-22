@@ -1,0 +1,14 @@
+<Text>
+
+This is JSX, basically like a <div> to display some text
+
+<View>
+
+A fundamental component to build UI - this containr supports layout with flexbox, style, some touch handling, and accessibility. <View> maps to platform specific UIView, <div> and android.view
+
+View can be nested inside other views and can have 0 to many children of any type
+
+Stylesheet
+
+Flex-box based stylesheet abstraction similar to CSS StyleSheets, using the Yoga layout engine. Pass styles to elements via `style` prop.
+
